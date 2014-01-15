@@ -37,9 +37,12 @@ public class Filer {
 		return f.renameTo(tof);
 	}
 
-	public static void main(String... args) {
-		Filer f = new Filer();
-		String fn = "create_test.txt";
-		System.out.println(f.move (fn, "testdir\tester.txt"));
+	public String[] getFiles (String path) {
+		File dir = new File(path);
+		File[] files = dir.listFiles();
+		String[] filenames = new String[files.length];
+		for (int i = 0; i < files.length; i++)
+			filenames[i] = files[i].getName();
+		return filenames;
 	}
 }
