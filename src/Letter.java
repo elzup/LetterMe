@@ -3,7 +3,7 @@ import java.lang.reflect.Field;
 
 public class Letter {
 	private int fromTime;
-	private int toTime;;
+	private int toTime;
 
 	public int getFromTime () {
 		return this.fromTime;
@@ -11,6 +11,14 @@ public class Letter {
 
 	public int getToTime () {
 		return this.toTime;
+	}
+
+	public String getFilename () {
+		return this.fromTime + "_" + this.toString();
+	}
+
+	public String getId () {
+		return this.fromTime + " " + this.toString();
 	}
 
 	public Letter (int fromTime, int toTime) {

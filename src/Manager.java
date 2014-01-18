@@ -17,6 +17,9 @@ public class Manager {
 			letterlist.add(new Letter(name));
 		}
 	}
+	
+	public void open (String name) {
+	}
 
 
 
