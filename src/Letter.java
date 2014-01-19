@@ -1,9 +1,17 @@
 import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class Letter {
 	private int fromTime;
 	private int toTime;
+
+	static int today_num = new Integer(new SimpleDateFormat("yyyyMMdd").format(new Date()));
+
+	public static final int PAST = -1;
+	public static final int TODAY = 0;
+	public static final int FUTURE = 1;
 
 	public int getFromTime () {
 		return this.fromTime;
@@ -13,8 +21,12 @@ public class Letter {
 		return this.toTime;
 	}
 
+	public int getPeriod () {
+		return new Integer(this.toTime).compareTo(today_num);
+	}
+
 	public String getFilename () {
-		return this.fromTime + "_" + this.toString();
+		return this.fromTime + "_" + this.toString() + ".txt";
 	}
 
 	public String getId () {

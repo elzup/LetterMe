@@ -1,4 +1,7 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JButton;
 
@@ -9,6 +12,7 @@ public class Manager {
 
 	static final String regex_filename = "\\d{8}_\\d{8}\\.txt";
 	static final String data_path = "./data/";
+
 	public Manager() {
 		filer = new Filer();
 		letterlist = new ArrayList<>();
@@ -17,11 +21,39 @@ public class Manager {
 			letterlist.add(new Letter(name));
 		}
 	}
-	
-	public void open (String name) {
+
+	public ArrayList<Letter> getLetters () {
+		return this.letterlist;
+	}
+
+	public ArrayList<Letter> getTermLetters (int flag) {
+		ArrayList<Letter> list = new ArrayList<>();
+		for (Letter letter : this.letterlist) {
+			if (letter.getPeriod() == flag) {
+				list.add(letter);
+			}
+		}
+		return list;
+	}
+
+	public ArrayList<Letter> getPastLetters () {
+		return this.getTermLetters(Letter.PAST);
+	}
+	public ArrayList<Letter> getTodayLetters () {
+		return this.getTermLetters(Letter.TODAY);
+	}
+	public ArrayList<Letter> getFutureLetters () {
+		return this.getTermLetters(Letter.FUTURE);
 	}
 
 
+	public void open (String filename) {
+		this.filer.open(filename);
+	}
+
+	public void open (Letter letter ){
+		this.open(letter.getFilename());
+	}
 
 	@Override
 	public String toString() {
